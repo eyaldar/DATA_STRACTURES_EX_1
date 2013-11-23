@@ -2,7 +2,7 @@
 #define __NODE_H__
 
 // Summary:
-//		Represents a part of dynamic implemention of a Linked List data structure.
+//		Represents a part of implemention of a dynamic Linked List data structure.
 //		the aforementioned Linked List is composed of Node elements
 // 
 // Template types:
