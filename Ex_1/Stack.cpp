@@ -14,15 +14,9 @@ void Stack<ItemType>::MakeEmpty()
 }
 
 template <typename ItemType>
-void Stack<ItemType>::IsEmpty()
+bool Stack<ItemType>::IsEmpty()
 {
 	return top == NULL;
-}
-
-template <typename ItemType>
-void Stack<ItemType>::Push(ItemType item)
-{
-	top = new Node<ItemType>(item, top);
 }
 
 template <typename ItemType>

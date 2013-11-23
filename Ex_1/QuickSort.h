@@ -1,21 +1,23 @@
 #ifndef __QUICK_SORT_H__
 #define __QUICK_SORT_H__
 
+#include "Stack.h"
 #include "LeftmostPivotPartitioner.h"
 
 // Summary:
 //		Represents an implementation of Quick Sort algorithm
 //		in both recursive and iterative ways.
-class QuickSort {
+class CQuickSort {
 public:
+
 	// Summary:
 	//		Gets the only instance of the CQuickSort class
 	//
     // Returns:
     //		Returns the only instance of the CQuickSort class.
-	static QuickSort& GetInstance()
+	static CQuickSort& GetInstance()
 	{
-		static QuickSort instance;
+		static CQuickSort instance;
 		return instance;
 	}
 
@@ -37,7 +39,7 @@ public:
     //		The left end position to sort from.
 	//   right:
     //		The right end position to sort to.
-	void SortRecursive(int arr[], int left, int right);
+	void QuickSort(int A[], int left, int right);
 
 	// Summary:
 	//		Sorts an array of elements according to the Quick Sort algorithm in a iterative way
@@ -49,7 +51,7 @@ public:
     //		The left end position to sort from.
 	//   right:
     //		The right end position to sort to.
-	void SortIterative(int arr[], int left, int right);
+	void QuickSortIter(int A[], int left, int right);
 
 private:
 	Partitioner& m_partitioner; // Used to perform the Partition phase of the Quick Sort algorithm
@@ -57,12 +59,19 @@ private:
 	// Summary:
 	//		A private constructor for the CQuickSort class
 	//		By default uses a Leftmost element as pivot.
-	QuickSort() 
+	CQuickSort() 
 	: m_partitioner(LeftmostPivotPartitioner::GetInstance()) {}
 
 	// Summary:
 	//		A private destructor for the CQuickSort class
-	~QuickSort() {}
+	~CQuickSort() {}
+
+	//		Represent one iteration of iterative QucikSort for the stack.
+	struct StateNode{
+	public:
+		int left;
+		int right;
+	};
 };
 
 #endif

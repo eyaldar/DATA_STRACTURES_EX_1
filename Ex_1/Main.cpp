@@ -7,11 +7,11 @@ void main()
 {
 	try
 	{
-		QuickSort& quickSorter = QuickSort::GetInstance();
+		CQuickSort& quickSorter = CQuickSort::GetInstance();
 
 		int a[9] = { 1, 5, 3, 7, 9, 20, 1, 4, 0 };
 
-		quickSorter.SortRecursive(a, 0, 8);
+		quickSorter.QuickSort(a, 0, 8);
 
 		cout << endl;
 		for (int i = 0; i < 9; i++)

@@ -3,6 +3,7 @@
 
 // The stack is implemented using a linked list of Nodes
 #include "Node.h"
+#include <iostream>
 
 // Summary:
 //		Represents a  implemention of a dynamic Stack data structure.
