@@ -8,7 +8,7 @@ int LeftmostPivotPartitioner::Partition(int arr[], int left, int right)
 	while(left < right)
 	{
 		// Whether the pivot is on the left side of array
-		if(pivotIndex < middleIndex)
+		if(pivotIndex <= middleIndex)
 		{
 			// Whether pivot is bigger than the current right element
 			if (arr[pivotIndex] > arr[right])
