@@ -48,11 +48,6 @@ protected:
     //		The first value's index inside the array.
 	//   secondIndex:
     //		The second value's index inside the array.
-	//
-	// Exceptions:
-	//		The method will throw an exception in the following cases:
-	//		1. The array was not initialized
-	//		2. left or right are out of bounds for the given array
 	void Swap(int arr[], int firstIndex, int secondIndex);
 };
 

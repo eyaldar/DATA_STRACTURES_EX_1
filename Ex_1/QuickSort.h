@@ -10,6 +10,7 @@ class QuickSort {
 public:
 	// Summary:
 	//		Gets the only instance of the CQuickSort class
+	//
     // Returns:
     //		Returns the only instance of the CQuickSort class.
 	static QuickSort& GetInstance()
@@ -24,10 +25,6 @@ public:
     // Parameters:
     //   newPartitioner:
     //		a new partitioner to be used by this class.
-	//
-	// Notes:
-	//		Any given partitioner will be released automatically by the class 
-	//		when that partitioner is replaced or when the class is destructed
 	void SetPartitioner(Partitioner& newPartitioner);
 
     // Summary:
@@ -40,11 +37,6 @@ public:
     //		The left end position to sort from.
 	//   right:
     //		The right end position to sort to.
-	//
-	// Exceptions:
-	//		The method will throw an exception in the following cases:
-	//		1. The array was not initialized
-	//		2. left or right are out of bounds for the given array
 	void SortRecursive(int arr[], int left, int right);
 
 	// Summary:
@@ -57,18 +49,14 @@ public:
     //		The left end position to sort from.
 	//   right:
     //		The right end position to sort to.
-	//
-	// Exceptions:
-	//		The method will throw an exception in the following cases:
-	//		1. The array was not initialized
-	//		2. left or right are out of bounds for the given array
-	//void SortIterative(int arr[], int left, int right);
+	void SortIterative(int arr[], int left, int right);
 
 private:
-	Partitioner& m_partitioner;
+	Partitioner& m_partitioner; // Used to perform the Partition phase of the Quick Sort algorithm
 
 	// Summary:
 	//		A private constructor for the CQuickSort class
+	//		By default uses a Leftmost element as pivot.
 	QuickSort() 
 	: m_partitioner(LeftmostPivotPartitioner::GetInstance()) {}
 

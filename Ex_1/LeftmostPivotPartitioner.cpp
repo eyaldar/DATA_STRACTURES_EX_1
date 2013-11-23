@@ -1,7 +1,5 @@
 #include "LeftmostPivotPartitioner.h"
 
-#include <iostream>
-
 int LeftmostPivotPartitioner::Partition(int arr[], int left, int right)
 {
 	int middleIndex = ((right - left) / 2) + left;

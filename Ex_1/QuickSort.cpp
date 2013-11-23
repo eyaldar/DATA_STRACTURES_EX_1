@@ -1,7 +1,5 @@
 #include "QuickSort.h"
 
-#include <iostream>
-
 void QuickSort::SortRecursive(int arr[], int left, int right)
 {
 	if(left < right)

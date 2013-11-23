@@ -33,19 +33,12 @@ public:
 	//
 	// Returns:
     //		Returns the chosen pivot's index.
-	//
-	// Exceptions:
-	//		The method will throw an exception in the following cases:
-	//		1. The array was not initialized
-	//		2. left or right are out of bounds for the given array
 	virtual int Partition(int arr[], int left, int right) override;
 
 private:
 	// Summary:
 	//		A private constructor for the LeftmostPivotPartitioner class
-	LeftmostPivotPartitioner() 
-	{
-	}
+	LeftmostPivotPartitioner() {}
 
 	// Summary:
 	//		A private destructor for the LeftmostPivotPartitioner class

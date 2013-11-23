@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="QuickSort.cpp" />
     <ClCompile Include="LeftmostPivotPartitioner.cpp" />
     <ClCompile Include="Main.cpp" />
