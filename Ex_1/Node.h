@@ -1,6 +1,8 @@
 #ifndef __NODE_H__
 #define __NODE_H__
 
+#include <iostream>
+
 // Summary:
 //		Represents a part of implemention of a dynamic Linked List data structure.
 //		the aforementioned Linked List is composed of Node elements
@@ -13,7 +15,8 @@ class Node {
 public:
 	// Summary:
 	//		Default constructor for the Node class
-	Node() {}
+	Node() 
+	: m_next(NULL) {}
 
 	// Summary:
 	//		Default constructor for the Node class
@@ -23,8 +26,8 @@ public:
     //		the data of the new node.
 	//   ptr:
     //		the point to the next node in list.
-	Node(ItemType data, Node* ptr = NULL)
-	: m_data(data), m_next(ptr)
+	Node(ItemType data, Node* nextPtr = NULL)
+		: m_data(data), m_next(nextPtr) {}
 
 	// Summary:
 	//		Default destructor for the Node class
@@ -91,5 +94,24 @@ private:
 	ItemType m_data; 			// data field.
 	Node<ItemType>* m_next;		// points to next node in list
 };
+
+template <typename ItemType>
+void Node<ItemType>::InsertAfter(Node<ItemType>* newNode)
+{
+	newNode->m_next = m_next;
+	m_next = newNode;
+}
+
+template <typename ItemType>
+Node<ItemType>* Node<ItemType>::DeleteAfter()
+{
+	Node<ItemType>* temp = m_next;
+
+	if(next == NULL) 
+		return NULL;
+
+	m_next = temp->m_next;
+	return temp;
+}
 
 #endif
