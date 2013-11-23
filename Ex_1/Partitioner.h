@@ -28,7 +28,7 @@ public:
 	virtual int Partition(int arr[], int left, int right) abstract;
 
 protected:
-			// Summary:
+	// Summary:
 	//		Swaps two elements' values sent by reference.
     //
     // Parameters:

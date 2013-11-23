@@ -21,10 +21,10 @@
     <ClCompile Include="LeftmostPivotPartitioner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CQuickSort.cpp">
+    <ClCompile Include="Partitioner.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Partitioner.cpp">
+    <ClCompile Include="QuickSort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -32,10 +32,13 @@
     <ClInclude Include="LeftmostPivotPartitioner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CQuickSort.h">
+    <ClInclude Include="Partitioner.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Partitioner.h">
+    <ClInclude Include="Node.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuickSort.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

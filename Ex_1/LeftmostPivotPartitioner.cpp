@@ -1,35 +1,42 @@
 #include "LeftmostPivotPartitioner.h"
 
+#include <iostream>
+
 int LeftmostPivotPartitioner::Partition(int arr[], int left, int right)
 {
-	int middleIndex = ((right - left) / 2);
-	int pivotIndex = left;
+	int middleIndex = ((right - left) / 2) + left;
+	int leftIndex = left;
 	int rightIndex = right;
+	int pivotIndex = leftIndex;
 
-	while(pivotIndex < rightIndex)
+	while(leftIndex < rightIndex)
 	{
+		// Whether the pivot is on the left side of array
 		if(pivotIndex < middleIndex)
 		{
+			// Whether pivot is bigger than the current right element
 			if (arr[pivotIndex] > arr[rightIndex])
 			{
-				Swap(arr, pivotIndex, rightIndex);
-				pivotIndex++;
+				Swap(arr, leftIndex++, rightIndex);
+				pivotIndex = rightIndex;
 			}
 			else
 			{
 				rightIndex--;
 			}
 		}
+		// the pivot is on the right side of array
 		else
 		{
-			if (arr[pivotIndex] > arr[rightIndex])
+			// Whether pivot is smaller than the current left element
+			if (arr[leftIndex] > arr[pivotIndex])
 			{
-				Swap(arr, pivotIndex, rightIndex);
-				rightIndex--;
+				Swap(arr, leftIndex, rightIndex--);
+				pivotIndex = leftIndex;
 			}
 			else
 			{
-				pivotIndex++;
+				leftIndex++;
 			}
 		}
 	}
