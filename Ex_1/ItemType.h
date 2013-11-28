@@ -1,6 +1,6 @@
 	// Summary:
 	//		Represent one iteration of iterative QucikSort for the stack.
-	struct StateNode{
+	class StateNode{
 	public:
 		int left;
 		int right;

@@ -1,8 +1,10 @@
 // DsEx1QuickSort.cpp : main project file.
 
 #include "QuickSort.h"
+#include "IOHandler.h"
 
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 // ==================================================================================
@@ -24,45 +26,46 @@ using namespace std;
 // ==================================================================================
 void main()
 {
-	const string ILLEGAL_INPUT_STRING = "illegal input";
-
-	int n;
-	int* arr = NULL;
+	int arrSize;
+	int *arr = NULL;
+	int	*arrIter = NULL;
 
 	CQuickSort& sorter = CQuickSort::GetInstance();
+	const IOHandler& ioHandler = IOHandler::GetInstance();
 
 	try
 	{
-		cin >> n;
-
-		if(n < 1)
-			throw ILLEGAL_INPUT_STRING;
+		ifstream inputFile;
+		inputFile.open("input.txt");
 		
-		arr = new int[n];
-
-		for (int i = 0; i < n; i++)
-		{
-			cin >> arr[i];
-		}
+		ioHandler.ReadArray(inputFile, arrSize, arr);
 		
-		sorter.QuickSort(arr, 0, n-1);
+		// copy the arr to another array.
+		arrIter = new int[arrSize];
 
-		cout << n;
-		cout << endl;
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < arrSize; i++)
 		{
-			cout << arr[i] << "   ";
+			arrIter[i] = arr[i];
 		}
-	}
-	catch (const string* error)
-	{
-		cerr << "Error: " << error;
+
+		inputFile.close();
+
+		sorter.QuickSortIter(arr, 0, arrSize-1);
+		sorter.QuickSortIter(arrIter, 0, arrSize-1);
+
+		ofstream outputFile;
+		outputFile.open("output.txt");
+
+		ioHandler.PrintArray(outputFile, arrSize, arr);
+		outputFile << endl;
+		ioHandler.PrintArray(outputFile, arrSize, arrIter);
 	}
 	catch (...)
 	{
-		cerr << endl << "An Error occured while sorting.";
-		cerr << endl << "The program will end.";
+		cerr << "Error : illegal input";
+		cin.ignore();
 	}
 
 	delete[] arr;
+	delete[] arrIter;
 }
