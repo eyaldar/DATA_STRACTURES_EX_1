@@ -14,9 +14,9 @@ void CQuickSort::QuickSort(int A[], int left, int right)
 void CQuickSort::QuickSortIter(int A[], int left, int right)
 {
 	int pivotIndex; // the current partition value
-	Stack<StateNode> recursionStack; // Stack which simulate the recursion
+	Stack recursionStack; // Stack which simulate the recursion
 
-	CQuickSort::StateNode curr = {left, right};
+	ItemType curr = {left, right};
 
 	recursionStack.MakeEmpty();
 	recursionStack.Push(curr);
@@ -28,9 +28,9 @@ void CQuickSort::QuickSortIter(int A[], int left, int right)
 		if (curr.left < curr.right)
 		{
 			pivotIndex = m_partitioner.Partition(A, curr.left, curr.right);
-			CQuickSort::StateNode itemLeft = { curr.left, pivotIndex - 1 };
+			ItemType itemLeft = { curr.left, pivotIndex - 1 };
 			recursionStack.Push(itemLeft);
-			CQuickSort::StateNode itemRight = { pivotIndex + 1, curr.right };
+			ItemType itemRight = { pivotIndex + 1, curr.right };
 			recursionStack.Push(itemRight);
 		}
 	}

@@ -2,15 +2,11 @@
 #define __NODE_H__
 
 #include <iostream>
+#include "ItemType.h"
 
 // Summary:
 //		Represents a part of implemention of a dynamic Linked List data structure.
 //		the aforementioned Linked List is composed of Node elements
-// 
-// Template types:
-//	 ItemType:
-//		The type of the data inside the node.
-template <typename ItemType>
 class Node {
 public:
 	// Summary:
@@ -59,7 +55,7 @@ public:
 	//
 	// Returns:
     //		The next node, on which the current node points.
-	Node<ItemType>* GetNext(void)
+	Node* GetNext(void)
 	{
 		return m_next;
 	}
@@ -70,7 +66,7 @@ public:
     // Parameters:
     //   next:
     //		The given pointer to set the next node of the current node.
-	void SetNext(Node<ItemType>* next)
+	void SetNext(Node* next)
 	{
 		m_next = next;
 	}
@@ -88,30 +84,11 @@ public:
 	//
 	// Returns:
     //		The next node.
-	Node<ItemType>* DeleteAfter();
+	Node* DeleteAfter();
 
 private:
 	ItemType m_data; 			// data field.
-	Node<ItemType>* m_next;		// points to next node in list
+	Node* m_next;		// points to next node in list
 };
-
-template <typename ItemType>
-void Node<ItemType>::InsertAfter(Node<ItemType>* newNode)
-{
-	newNode->m_next = m_next;
-	m_next = newNode;
-}
-
-template <typename ItemType>
-Node<ItemType>* Node<ItemType>::DeleteAfter()
-{
-	Node<ItemType>* temp = m_next;
-
-	if(next == NULL) 
-		return NULL;
-
-	m_next = temp->m_next;
-	return temp;
-}
 
 #endif

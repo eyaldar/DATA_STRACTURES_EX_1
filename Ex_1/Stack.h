@@ -6,11 +6,6 @@
 
 // Summary:
 //		Represents a  implemention of a dynamic Stack data structure.
-// 
-// Template types:
-//	 ItemType:
-//		The type of the data inside the stack.
-template <typename ItemType>
 class Stack{
 public:
 	// Summary:
@@ -52,48 +47,7 @@ public:
 	ItemType Pop();
 
 private:
-	Node<ItemType>* top; //Points to top of stack.
+	Node* top; //Points to top of stack.
 };
-
-template <typename ItemType>
-void Stack<ItemType>::MakeEmpty()
-{
-	Node<ItemType>* temp;
-
-	while(top != NULL)
-	{
-		temp = top;
-		top->SetNext(top->GetNext());
-		delete temp;
-	}
-}
-
-template <typename ItemType>
-bool Stack<ItemType>::IsEmpty()
-{
-	return top == NULL;
-}
-
-template <typename ItemType>
-void Stack<ItemType>::Push(ItemType item)
-{
-	top = new Node<ItemType>(item, top);
-}
-
-template <typename ItemType>
-ItemType Stack<ItemType>::Pop()
-{
-	if(IsEmpty())
-	{
-		throw "Error! failed to perform Pop operation because stack is empty!";
-	}
-
-	Node<ItemType>* temp = top;
-	ItemType item = top->GetData();
-	top = top->GetNext();
-	delete temp;
-
-	return item;
-}
 
 #endif

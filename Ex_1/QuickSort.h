@@ -65,13 +65,6 @@ private:
 	// Summary:
 	//		A private destructor for the CQuickSort class
 	~CQuickSort() {}
-
-	//		Represent one iteration of iterative QucikSort for the stack.
-	struct StateNode{
-	public:
-		int left;
-		int right;
-	};
 };
 
 #endif
