@@ -48,6 +48,7 @@ void main()
 		// Create the array and fill with data
 		arr = new int[arrSize];
 		ioHandler.FillArray(inputFile, arrSize, arr);
+		inputFile.close();
 		
 		// copy the arr to another array.
 		arrIter = new int[arrSize];
@@ -56,8 +57,6 @@ void main()
 		{
 			arrIter[i] = arr[i];
 		}
-
-		inputFile.close();
 
 		sorter.QuickSortIter(arr, 0, arrSize-1);
 		sorter.QuickSortIter(arrIter, 0, arrSize-1);
