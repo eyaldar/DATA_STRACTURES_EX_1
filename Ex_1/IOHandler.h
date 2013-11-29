@@ -20,24 +20,20 @@ public:
 	}
 
 	// Summary:
-	//		Read array size and array data from a file stream.
+	//		Fill array with data from a file stream.
     //
     // Parameters:
     //   file:
     //		The stream to read from.
 	//   size:
-    //		The size of the array we read from the file.
+    //		The size of the given array.
 	//   arr:
-    //		Pointer to array that this method creates.
+    //		The array to read data to.
 	//
 	// Execptions:
 	//		throws an exception in case the number of data element is different from the given array size.
-	//		or in case the array size is invalid.
 	//
-	// Note: 
-	//		it is the user's responsibility to free the created array.
-	//
-	void IOHandler::ReadArray(std::ifstream& file, int& size, int*& arr) const;
+	void IOHandler::FillArray(std::ifstream& file, int size, int* arr) const;
 
 	// Summary:
 	//		Prints an array to a file stream.

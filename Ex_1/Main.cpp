@@ -37,8 +37,17 @@ void main()
 	{
 		ifstream inputFile;
 		inputFile.open("input.txt");
-		
-		ioHandler.ReadArray(inputFile, arrSize, arr);
+
+		// Read array size.
+		inputFile >> arrSize;
+
+		// Throws in case the array size is invalid.
+		if(arrSize < 1)
+			throw "Illegal input";
+
+		// Create the array and fill with data
+		arr = new int[arrSize];
+		ioHandler.FillArray(inputFile, arrSize, arr);
 		
 		// copy the arr to another array.
 		arrIter = new int[arrSize];

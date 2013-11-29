@@ -2,19 +2,12 @@
 
 using namespace std;
 
-void IOHandler::ReadArray(std::ifstream& file, int& size, int*& arr) const
+void IOHandler::FillArray(ifstream& file, int size, int* arr) const
 {
-	file >> size;
-
-	if(size < 1)
-		throw "Illegal input";
-		
 	int currNum;
-	arr = new int[size];
-
 	int inputNumIndex = 0;
 
-	while (file >> currNum && inputNumIndex < size)
+	while (inputNumIndex < size && file >> currNum)
 	{
 		arr[inputNumIndex] = currNum;
 		inputNumIndex++;
@@ -24,7 +17,8 @@ void IOHandler::ReadArray(std::ifstream& file, int& size, int*& arr) const
 	if(size != inputNumIndex || file >> currNum)
 		throw "Illegal input";
 }
-void IOHandler::PrintArray(std::ofstream& file, int size, const int arr[]) const
+
+void IOHandler::PrintArray(ofstream& file, int size, const int arr[]) const
 {
 	file << size << endl;
 
