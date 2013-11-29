@@ -1,9 +1,8 @@
-	// Summary:
-	//		Represent one iteration of iterative QucikSort for the stack.
-	class StateNode{
-	public:
-		int left;
-		int right;
-	};
+#ifndef __ITEM_TYPE_H__
+#define __ITEM_TYPE_H__
 
-	typedef StateNode ItemType;
+#include "StateNode.h"
+
+typedef StateNode ItemType;
+
+#endif

@@ -80,6 +80,7 @@
     <ClInclude Include="Node.h" />
     <ClInclude Include="Partitioner.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="StateNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
