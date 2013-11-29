@@ -17,13 +17,6 @@ using namespace std;
 //		Lecturer:		Iris Gaber
 //
 // ==================================================================================
-//
-//	  	    Program Instructions:
-//		    =====================
-//      1. Enter the required array size
-//      2. Enter the elements
-//
-// ==================================================================================
 void main()
 {
 	int arrSize;
@@ -58,7 +51,7 @@ void main()
 			arrIter[i] = arr[i];
 		}
 
-		sorter.QuickSortIter(arr, 0, arrSize-1);
+		sorter.QuickSort(arr, 0, arrSize-1);
 		sorter.QuickSortIter(arrIter, 0, arrSize-1);
 
 		ofstream outputFile;
