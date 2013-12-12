@@ -2,19 +2,23 @@
 
 int LeftmostPivotPartitioner::Partition(int arr[], int left, int right)
 {
-	int middleIndex = ((right - left) / 2) + left;
+	// Determine whether the pivot is on the left side - starts as true
+	bool isPivotOnLeft = true;
 	int pivotIndex = left;
 
 	while(left < right)
 	{
 		// Whether the pivot is on the left side of array
-		if(pivotIndex <= middleIndex)
+		if(isPivotOnLeft)
 		{
 			// Whether pivot is bigger than the current right element
 			if (arr[pivotIndex] > arr[right])
 			{
 				Swap(arr, left++, right);
 				pivotIndex = right;
+
+				// Moves pivot to the right side
+				isPivotOnLeft = !isPivotOnLeft;
 			}
 			else
 			{
@@ -29,6 +33,9 @@ int LeftmostPivotPartitioner::Partition(int arr[], int left, int right)
 			{
 				Swap(arr, left, right--);
 				pivotIndex = left;
+
+				// Moves pivot to the left side
+				isPivotOnLeft = !isPivotOnLeft;
 			}
 			else
 			{
