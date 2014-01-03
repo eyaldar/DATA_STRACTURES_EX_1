@@ -2,6 +2,10 @@
 
 #include <iostream>
 #include <fstream>
+
+#include "TreeKey.h"
+#include "TwoThreeTree.h"
+
 using namespace std;
 
 #define INPUT_FILE "input.txt"
@@ -21,6 +25,25 @@ void main()
 {
 	try
 	{
+		TwoThreeTree t;
+
+		t.Insert(2, "a");
+
+		t.Insert(5, "b");
+
+		t.Insert(16, "g");
+
+		t.Insert(7, "d");
+
+		t.Insert(8, "e");
+
+		t.Insert(12, "f");
+
+		t.Insert(19, "h");
+
+		t.Insert(6, "c");
+
+		t.Insert(4, "j");
 	}
 	catch(const char* error)
 	{

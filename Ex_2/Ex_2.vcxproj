@@ -65,11 +65,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="TreeNode.cpp" />
+    <ClCompile Include="TwoThreeTreeLeaf.cpp" />
+    <ClCompile Include="TwoThreeTree.cpp" />
+    <ClCompile Include="TwoThreeTreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TreeElement.h" />
+    <ClInclude Include="TreeKey.h" />
     <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="TwoThreeTree.h" />
+    <ClInclude Include="TwoThreeTreeLeaf.h" />
     <ClInclude Include="TwoThreeTreeNode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

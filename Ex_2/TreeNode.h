@@ -1,22 +1,23 @@
 #ifndef __TREE_NODE_H__
 #define __TREE_NODE_H__
 
-#include "TreeElement.h"
+#include "TreeKey.h"
 
 #include <iostream>
 
 class TreeNode{
 public:
-	virtual void Insert(TreeElement& data); 
-	virtual void Delete(TreeElement& data);
-	virtual TreeNode* Find(const TreeKey& key);
+	TreeNode() {}
 
-	virtual bool IsLeaf();
+	virtual TreeNode* Find(const TreeKey& key) const=0;
 
-	virtual void PrintKeys();
-	virtual void PrintData();
-private:
-	TreeElement element;
+	virtual bool IsLeaf() const = 0;
+
+	virtual void PrintKeys() const = 0;
+	virtual void PrintData() const = 0;
+
+	virtual ~TreeNode() {}
+protected:
 };
 
 #endif
