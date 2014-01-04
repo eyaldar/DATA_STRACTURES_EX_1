@@ -21,7 +21,7 @@ void TwoThreeTree::Insert(TreeKey key, std::string data)
 
 		if(foundNode != NULL)
 		{
-			throw "Key already exists!";
+			throw "Key already exists";
 		}
 
 		root->FixChildrenOrder();
