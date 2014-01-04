@@ -51,3 +51,17 @@ void TwoThreeTree::Delete(TreeKey key)
 		delete node;
 	}
 }
+
+void TwoThreeTree::PrintKeys() const
+{
+	root->PrintKeys();
+
+	cout << endl;
+}
+
+void TwoThreeTree::PrintData() const
+{
+	root->PrintData();
+
+	cout << endl;
+}

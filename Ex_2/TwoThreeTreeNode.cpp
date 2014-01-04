@@ -266,10 +266,34 @@ TwoThreeTreeNode::~TwoThreeTreeNode()
 
 void TwoThreeTreeNode::PrintKeys() const
 {
+	if(left != NULL)
+	{
+		left->PrintKeys();
+	}
+	if(mid != NULL)
+	{
+		mid->PrintKeys();
+	}
+	if(right != NULL)
+	{
+		right->PrintKeys();
+	}
 }
 
 void TwoThreeTreeNode::PrintData() const
 {
+	if(left != NULL)
+	{
+		left->PrintData();
+	}
+	if(mid != NULL)
+	{
+		mid->PrintData();
+	}
+	if(right != NULL)
+	{
+		right->PrintData();
+	}
 }
 
 bool TwoThreeTreeNode::IsLeaf() const

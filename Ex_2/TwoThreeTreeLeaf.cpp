@@ -17,12 +17,12 @@ TreeNode* TwoThreeTreeLeaf::Find(const TreeKey& key) const
 
 void TwoThreeTreeLeaf::PrintKeys() const
 {
-	cout << key;
+	cout << key << " ";
 }
 
 void TwoThreeTreeLeaf::PrintData() const
 {
-	cout << data.c_str();
+	cout << data.c_str() << " ";;
 }
 
 bool TwoThreeTreeLeaf::IsLeaf() const

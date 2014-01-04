@@ -45,7 +45,11 @@ void main()
 
 		t.Insert(4, "j");
 
+		t.PrintKeys();
+
 		t.Delete(12);
+
+		t.PrintKeys();
 	}
 	catch(const char* error)
 	{

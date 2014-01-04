@@ -19,8 +19,8 @@ public:
 	void Delete(TreeKey key);
 	TreeNode* Find(const TreeKey& key);
 
-	void PrintKeys();
-	void PrintData();
+	void PrintKeys() const;
+	void PrintData() const;
 
 	~TwoThreeTree()
 	{
