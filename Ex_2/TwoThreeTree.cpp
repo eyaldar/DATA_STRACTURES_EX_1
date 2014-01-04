@@ -14,15 +14,15 @@ void TwoThreeTree::Insert(TreeKey key, std::string data)
 	}
 	else if(root->mid == NULL)
 	{
-		root->mid = new TwoThreeTreeLeaf(key, data);
-		root->min2 = key;
-
 		TreeNode* foundNode = Find(key);
 
 		if(foundNode != NULL)
 		{
 			throw "Key already exists";
 		}
+
+		root->mid = new TwoThreeTreeLeaf(key, data);
+		root->min2 = key;
 
 		root->FixChildrenOrder();
 	}
