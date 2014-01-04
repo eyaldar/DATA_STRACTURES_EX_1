@@ -43,7 +43,7 @@ void TwoThreeTree::Delete(TreeKey key)
 {
 	TwoThreeTreeNode* node = root->Delete(key);
 
-	if(node != NULL && !node->left->IsLeaf())
+	if(node != NULL && node->left != NULL && !node->left->IsLeaf())
 	{
 		root = (TwoThreeTreeNode*)node->left;
 		

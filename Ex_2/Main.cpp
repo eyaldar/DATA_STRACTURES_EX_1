@@ -31,6 +31,8 @@ void main()
 
 		t.Insert(5, "b");
 
+		t.Delete(2);
+
 		t.Insert(6, "c");
 
 		t.Insert(7, "d");
