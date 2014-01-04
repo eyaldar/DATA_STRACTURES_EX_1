@@ -28,7 +28,7 @@ public:
 	void WriteNewLine();
     void WriteStringToFile(const std::string&);
 	void WriteTreeKeyToFile(TreeKey);
-    const std::string ReadStringFromFile();
+    std::string ReadStringFromFile();
 	TreeKey ReadTreeKeyFromFile();
 	int ReadIntFromFile();
 };

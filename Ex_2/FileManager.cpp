@@ -42,7 +42,7 @@ void FileManager::WriteStringToFile(const string& dataToWrite)
 	outputFile << " ";
 }
 
-const std::string FileManager::ReadStringFromFile()
+string FileManager::ReadStringFromFile()
 {
 	string str;
 	inputFile >> str;
