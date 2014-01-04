@@ -13,6 +13,7 @@ public:
 	virtual TreeNode* Find(const TreeKey& key) const;
 
 	virtual bool IsLeaf() const;
+	virtual TreeKey& getMinimum();
 
 	virtual void PrintKeys() const;
 	virtual void PrintData() const;

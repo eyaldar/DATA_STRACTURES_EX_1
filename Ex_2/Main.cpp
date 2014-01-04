@@ -31,7 +31,7 @@ void main()
 
 		t.Insert(5, "b");
 
-		t.Insert(16, "g");
+		t.Insert(6, "c");
 
 		t.Insert(7, "d");
 
@@ -39,11 +39,13 @@ void main()
 
 		t.Insert(12, "f");
 
+		t.Insert(16, "g");
+
 		t.Insert(19, "h");
 
-		t.Insert(6, "c");
-
 		t.Insert(4, "j");
+
+		t.Delete(12);
 	}
 	catch(const char* error)
 	{

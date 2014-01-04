@@ -15,11 +15,12 @@ public:
 		: left(NULL), mid(NULL), right(NULL) {}
 
 	TwoThreeTreeNode* Insert(const TreeKey& key, const std::string& data); 
-	void Delete(const TreeKey& data);
+	TwoThreeTreeNode* Delete(const TreeKey& key);
 
 	virtual TreeNode* Find(const TreeKey& key) const;
 
 	virtual bool IsLeaf() const;
+	virtual TreeKey& getMinimum();
 
 	virtual void PrintKeys() const;
 	virtual void PrintData() const;

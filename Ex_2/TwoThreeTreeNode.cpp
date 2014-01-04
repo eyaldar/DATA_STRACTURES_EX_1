@@ -5,6 +5,11 @@
 
 using namespace std;
 
+TreeKey& TwoThreeTreeNode::getMinimum()
+{
+	return min1;
+}
+
 TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string& data)
 {
 	TwoThreeTreeNode* newSibling = NULL;
@@ -30,7 +35,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 
 		if(node != NULL)
 		{
-			newSibling = SplitTreeNode(((TwoThreeTreeNode*)right)->min1, node);
+			newSibling = SplitTreeNode(node->getMinimum(), node);
 		}
 	}
 	else if(mid != NULL && key >= min2)
@@ -41,7 +46,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 		{
 			if(right != NULL)
 			{
-				newSibling = SplitTreeNode(((TwoThreeTreeNode*)mid)->min1, node);
+				newSibling = SplitTreeNode(node->getMinimum(), node);
 			}
 			else
 			{
@@ -59,7 +64,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 		{
 			if(right != NULL)
 			{
-				newSibling = SplitTreeNode(((TwoThreeTreeNode*)left)->min1, node);
+				newSibling = SplitTreeNode(node->getMinimum(), node);
 			}
 			else
 			{
@@ -96,8 +101,142 @@ TwoThreeTreeNode* TwoThreeTreeNode::SplitTreeNode(const TreeKey& key, TreeNode* 
 	return newSibling;
 }
 
-void TwoThreeTreeNode::Delete(const TreeKey& data)
+TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 {
+	if(left->IsLeaf())
+	{
+		TreeNode* node = Find(key);
+
+		if(right == node)
+		{
+			delete right;
+			right = NULL;
+		}
+		else if(mid == node)
+		{
+			Swap(mid, right);
+			Swap(min2, min3);
+
+			delete right;
+			right = NULL;
+		}
+		else if(left == node)
+		{
+			Swap(left, mid);
+			Swap(min1, min2);
+			Swap(mid, right);
+			Swap(min2, min3);
+
+			delete right;
+			right = NULL;
+		}
+	}
+	else if(right != NULL && key >= min3)
+	{
+		TwoThreeTreeNode* node = ((TwoThreeTreeNode*)right)->Delete(key);
+
+		if(node == NULL)
+		{
+			min3 = right->getMinimum();
+		}
+		else
+		{
+			TwoThreeTreeNode* midNode = (TwoThreeTreeNode*)mid;
+			if(midNode->right != NULL)
+			{
+				Swap(node->mid, midNode->right);
+				Swap(node->min2, midNode->min3);
+
+				node->FixChildrenOrder();
+			}
+			else
+			{
+				Swap(node->left, midNode->right);
+				Swap(node->min1, midNode->min3);
+
+				delete right;
+				right = NULL;
+			}
+		}
+	}
+	else if(mid != NULL && key >= min2)
+	{
+		TwoThreeTreeNode* node = ((TwoThreeTreeNode*)mid)->Delete(key);
+
+		if(node == NULL)
+		{
+			min2 = mid->getMinimum();
+		}
+		else
+		{
+			TwoThreeTreeNode* leftNode = (TwoThreeTreeNode*)left;
+
+			if(leftNode->right != NULL)
+			{
+				Swap(node->mid, leftNode->right);
+				Swap(node->min2, leftNode->min3);
+
+				node->FixChildrenOrder();
+			}
+			else
+			{
+				Swap(leftNode->right, node->left);
+				Swap(leftNode->min3, node->min1);
+
+				delete mid;
+				mid = NULL;
+
+				Swap(mid, right);
+				Swap(min2, min3);
+			}
+		}
+	}
+	else if(left != NULL)
+	{
+		TwoThreeTreeNode* node = ((TwoThreeTreeNode*)left)->Delete(key);
+
+		if(node == NULL)
+		{
+			min1 =left->getMinimum();
+		}
+		else
+		{
+			TwoThreeTreeNode* midNode = (TwoThreeTreeNode*)mid;
+
+			if(midNode->right != NULL)
+			{
+				Swap(node->mid, midNode->left);
+				Swap(node->min2, midNode->min1);
+
+				Swap(midNode->left, midNode->mid);
+				Swap(midNode->min1, midNode->min2);
+
+				Swap(midNode->mid, midNode->right);
+				Swap(midNode->min2, midNode->min3);
+			}
+			else
+			{
+				Swap(midNode->right, node->left);
+				Swap(midNode->min3, node->min1);
+
+				midNode->FixChildrenOrder();
+
+				delete left;
+				left = NULL;
+
+				Swap(left, mid);
+				Swap(min1, min2);
+
+				Swap(mid, right);
+				Swap(min2, min3);
+			}
+		}
+	}
+
+	if(mid == NULL)
+		return this;
+
+	return NULL;
 }
 
 TreeNode* TwoThreeTreeNode::Find(const TreeKey& key) const

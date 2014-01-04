@@ -16,7 +16,7 @@ public:
 	}
 
 	void Insert(TreeKey key, std::string data); 
-	void Delete(TreeKey data);
+	void Delete(TreeKey key);
 	TreeNode* Find(const TreeKey& key);
 
 	void PrintKeys();

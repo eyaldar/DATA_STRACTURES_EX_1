@@ -2,6 +2,11 @@
 
 using namespace std;
 
+TreeKey& TwoThreeTreeLeaf::getMinimum()
+{
+	return key;
+}
+
 TreeNode* TwoThreeTreeLeaf::Find(const TreeKey& key) const
 {
 	if(this->key == key)

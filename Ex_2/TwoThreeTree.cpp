@@ -22,7 +22,6 @@ void TwoThreeTree::Insert(TreeKey key, std::string data)
 	{
 		TwoThreeTreeNode* newNode = root->Insert(key, data);
 
-
 		if(newNode != NULL)
 		{
 			TwoThreeTreeNode* oldRoot = root;
@@ -37,5 +36,18 @@ void TwoThreeTree::Insert(TreeKey key, std::string data)
 
 			root->FixChildrenOrder();
 		}
+	}
+}
+
+void TwoThreeTree::Delete(TreeKey key)
+{
+	TwoThreeTreeNode* node = root->Delete(key);
+
+	if(node != NULL && !node->left->IsLeaf())
+	{
+		root = (TwoThreeTreeNode*)node->left;
+		
+		node->left = NULL;
+		delete node;
 	}
 }
