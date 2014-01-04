@@ -1,5 +1,7 @@
 #include "TwoThreeTreeLeaf.h"
 
+#include "FileManager.h"
+
 using namespace std;
 
 TreeKey& TwoThreeTreeLeaf::getMinimum()
@@ -17,12 +19,12 @@ TreeNode* TwoThreeTreeLeaf::Find(const TreeKey& key) const
 
 void TwoThreeTreeLeaf::PrintKeys() const
 {
-	cout << key << " ";
+	FileManager::GetInstance().WriteTreeKeyToFile(key);
 }
 
 void TwoThreeTreeLeaf::PrintData() const
 {
-	cout << data.c_str() << " ";;
+	FileManager::GetInstance().WriteStringToFile(data);
 }
 
 bool TwoThreeTreeLeaf::IsLeaf() const

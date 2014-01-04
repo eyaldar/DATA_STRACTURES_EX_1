@@ -1,6 +1,7 @@
 #include "TwoThreeTree.h"
 
 #include "TwoThreeTreeLeaf.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -15,6 +16,13 @@ void TwoThreeTree::Insert(TreeKey key, std::string data)
 	{
 		root->mid = new TwoThreeTreeLeaf(key, data);
 		root->min2 = key;
+
+		TreeNode* foundNode = Find(key);
+
+		if(foundNode != NULL)
+		{
+			throw "Key already exists!";
+		}
 
 		root->FixChildrenOrder();
 	}
@@ -52,16 +60,21 @@ void TwoThreeTree::Delete(TreeKey key)
 	}
 }
 
+TreeNode* TwoThreeTree::Find(const TreeKey& key)
+{
+	return root->Find(key);
+}
+
 void TwoThreeTree::PrintKeys() const
 {
 	root->PrintKeys();
 
-	cout << endl;
+	FileManager::GetInstance().WriteNewLine();
 }
 
 void TwoThreeTree::PrintData() const
 {
 	root->PrintData();
 
-	cout << endl;
+	FileManager::GetInstance().WriteNewLine();
 }

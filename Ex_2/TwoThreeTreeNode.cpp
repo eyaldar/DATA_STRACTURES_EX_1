@@ -16,6 +16,13 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 
 	if(left->IsLeaf())
 	{
+		TreeNode* foundNode = Find(key);
+
+		if(foundNode != NULL)
+		{
+			throw "Key already exists!";
+		}
+
 		if(right == NULL)
 		{
 			right = new TwoThreeTreeLeaf(key, data);

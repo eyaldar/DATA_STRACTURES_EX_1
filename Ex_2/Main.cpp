@@ -5,6 +5,7 @@
 
 #include "TreeKey.h"
 #include "TwoThreeTree.h"
+#include "FileManager.h"
 
 using namespace std;
 
@@ -25,40 +26,51 @@ void main()
 {
 	try
 	{
+		FileManager::GetInstance().OpenFile("input.txt", false);
+		FileManager::GetInstance().OpenFile("output.txt", true);
+
 		TwoThreeTree t;
 
-		t.Insert(2, "a");
+		TreeKey key;
+		string data;
 
-		t.Insert(5, "b");
+		int dataNum = FileManager::GetInstance().ReadIntFromFile();
 
-		t.Delete(2);
+		for (int i = 0; i < dataNum; i++)
+		{
+			key = FileManager::GetInstance().ReadTreeKeyFromFile();
+			data = FileManager::GetInstance().ReadStringFromFile();
 
-		t.Insert(6, "c");
+			t.Insert(key, data);
+		}
 
-		t.Insert(7, "d");
+		TreeKey keyToDelete = FileManager::GetInstance().ReadTreeKeyFromFile();
 
-		t.Insert(8, "e");
+		TreeNode* node = t.Find(keyToDelete);
 
-		t.Insert(12, "f");
+		if(node != NULL)
+		{
+			t.Delete(keyToDelete);
+		}
+		else
+		{
+			FileManager::GetInstance().WriteStringToFile("Key does not exists");
+			FileManager::GetInstance().WriteNewLine();
+		}
 
-		t.Insert(16, "g");
-
-		t.Insert(19, "h");
-
-		t.Insert(4, "j");
-
-		t.PrintKeys();
-
-		t.Delete(12);
-
-		t.PrintKeys();
+		t.PrintData();
 	}
 	catch(const char* error)
 	{
 		cerr << "Error! " << error;
+
+		FileManager::GetInstance().WriteStringToFile(error);
 	}
 	catch(...)
 	{
 		cerr << "Error!";
 	}
+
+	FileManager::GetInstance().CloseFile(true);
+	FileManager::GetInstance().CloseFile(false);
 }

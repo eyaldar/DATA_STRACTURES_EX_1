@@ -64,12 +64,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FileManager.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TwoThreeTreeLeaf.cpp" />
     <ClCompile Include="TwoThreeTree.cpp" />
     <ClCompile Include="TwoThreeTreeNode.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FileManager.h" />
     <ClInclude Include="TreeKey.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="TwoThreeTree.h" />
