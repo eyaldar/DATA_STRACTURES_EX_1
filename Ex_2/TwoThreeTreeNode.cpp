@@ -5,11 +5,15 @@
 
 using namespace std;
 
-TreeKey& TwoThreeTreeNode::getMinimum()
+// Returns the minimum value of this node's immediate children
+TreeKey& TwoThreeTreeNode::GetMinimum()
 {
 	return min1;
 }
 
+// Inserts the given key + data into its right place according to the 2-3 Tree algorithm
+// In case split is required - returns the newly created sibling after split.
+// NOTE: The method will throw an exception in case the key already exists
 TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string& data)
 {
 	TwoThreeTreeNode* newSibling = NULL;
@@ -42,7 +46,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 
 		if(node != NULL)
 		{
-			newSibling = SplitTreeNode(node->getMinimum(), node);
+			newSibling = SplitTreeNode(node->GetMinimum(), node);
 		}
 	}
 	else if(mid != NULL && key >= min2)
@@ -53,7 +57,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 		{
 			if(right != NULL)
 			{
-				newSibling = SplitTreeNode(node->getMinimum(), node);
+				newSibling = SplitTreeNode(node->GetMinimum(), node);
 			}
 			else
 			{
@@ -71,7 +75,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 		{
 			if(right != NULL)
 			{
-				newSibling = SplitTreeNode(node->getMinimum(), node);
+				newSibling = SplitTreeNode(node->GetMinimum(), node);
 			}
 			else
 			{
@@ -85,6 +89,9 @@ TwoThreeTreeNode* TwoThreeTreeNode::Insert(const TreeKey& key, const std::string
 	return newSibling;
 }
 
+// Splits a 2-3 node into 2 separate nodes according to the 2-3 insertion algorithm
+// the given node (newNode) is the new tree node to add (which caused the need of a split)
+// Returns a another new sibling of this node
 TwoThreeTreeNode* TwoThreeTreeNode::SplitTreeNode(const TreeKey& key, TreeNode* newNode)
 {
 	TwoThreeTreeNode* newSibling = new TwoThreeTreeNode();
@@ -96,6 +103,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::SplitTreeNode(const TreeKey& key, TreeNode* 
 	newSibling->min2 = key;
 	newSibling->mid = newNode;
 
+	// Check whether the new key is smaller this node's mid node as the newSibling is always to the right
 	if(min2 > key)
 	{
 		Swap(min2, newSibling->min2);
@@ -108,6 +116,8 @@ TwoThreeTreeNode* TwoThreeTreeNode::SplitTreeNode(const TreeKey& key, TreeNode* 
 	return newSibling;
 }
 
+// Deletes the given key from the 2-3 tree node according to the 2-3 deletion algorithm
+// In case merge is required - returns this, otherwise - return NULL
 TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 {
 	if(left->IsLeaf())
@@ -144,7 +154,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 
 		if(node == NULL)
 		{
-			min3 = right->getMinimum();
+			min3 = right->GetMinimum();
 		}
 		else
 		{
@@ -172,7 +182,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 
 		if(node == NULL)
 		{
-			min2 = mid->getMinimum();
+			min2 = mid->GetMinimum();
 		}
 		else
 		{
@@ -204,7 +214,7 @@ TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 
 		if(node == NULL)
 		{
-			min1 =left->getMinimum();
+			min1 =left->GetMinimum();
 		}
 		else
 		{
@@ -246,6 +256,9 @@ TwoThreeTreeNode* TwoThreeTreeNode::Delete(const TreeKey& key)
 	return NULL;
 }
 
+// Finds the given key in the 2-3 Tree node
+// in case the key is found - returns its tree node (with satellite data)
+// otherwise the key is not found - returns NULL
 TreeNode* TwoThreeTreeNode::Find(const TreeKey& key) const
 {
 	if(right != NULL && key >= min3)
@@ -271,6 +284,7 @@ TwoThreeTreeNode::~TwoThreeTreeNode()
 	delete right;
 }
 
+// Prints all the keys on this 2-3 tree node
 void TwoThreeTreeNode::PrintKeys() const
 {
 	if(left != NULL)
@@ -287,6 +301,7 @@ void TwoThreeTreeNode::PrintKeys() const
 	}
 }
 
+// Prints all the data on this 2-3 tree node
 void TwoThreeTreeNode::PrintData() const
 {
 	if(left != NULL)
@@ -303,21 +318,26 @@ void TwoThreeTreeNode::PrintData() const
 	}
 }
 
+// Returns false as this class represents a non-leaf node
 bool TwoThreeTreeNode::IsLeaf() const
 {
 	return false;
 }
 
+// This method assures the immediate children of the 2-3 tree node are ordered.
 void TwoThreeTreeNode::FixChildrenOrder()
 {
+	// Has 3 children
 	if (right != NULL)
 	{
+		// uses STL's Map to sort the 3 children
 		map<TreeKey, TreeNode*> orderedChildren;
 
 		orderedChildren[min1] = left;
 		orderedChildren[min2] = mid;
 		orderedChildren[min3] = right;
 
+		// Uses the iterator to iterate through the sorted children
 		map<TreeKey, TreeNode*>::iterator curr = orderedChildren.begin();
 
 		min1 = curr->first;
@@ -333,8 +353,10 @@ void TwoThreeTreeNode::FixChildrenOrder()
 		min3 = curr->first;
 		right = curr->second;
 	}
+	// Has 2 children
 	if (mid != NULL)
 	{
+		// Check whether order of children is correct
 		if (min2 < min1)
 		{
 			Swap(min1, min2);

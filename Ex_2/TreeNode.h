@@ -12,7 +12,7 @@ public:
 	virtual TreeNode* Find(const TreeKey& key) const=0;
 
 	virtual bool IsLeaf() const = 0;
-	virtual TreeKey& getMinimum() = 0;
+	virtual TreeKey& GetMinimum() = 0;
 
 	virtual void PrintKeys() const = 0;
 	virtual void PrintData() const = 0;
